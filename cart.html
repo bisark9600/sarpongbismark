@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Clothing Store</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Your Shopping Cart</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="cart-items">
+            <h2>Items in Your Cart</h2>
+            <ul id="cart-list">
+                <!-- Cart items will be dynamically added here -->
+            </ul>
+            <p class="total">Total: $<span id="total-price">0.00</span></p>
+            
+            <!-- Checkout button -->
+            <div id="checkout-container">
+                <a href="checkout.html" id="checkout-button" class="button" style="display: none;">Proceed to Checkout</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 BKS Clothing Store</p>
+    </footer>
+
+    <script>
+        // Function to display cart items
+        function displayCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartList = document.getElementById('cart-list');
+            const totalPriceElement = document.getElementById('total-price');
+            const checkoutButton = document.getElementById('checkout-button');
+            let totalPrice = 0;
+
+            cartList.innerHTML = ''; // Clear the list before adding items
+
+            if (cart.length === 0) {
+                cartList.innerHTML = '<li>Your cart is empty.</li>';
+                checkoutButton.style.display = 'none'; // Hide checkout button if cart is empty
+            } else {
+                cart.forEach(item => {
+                    const li = document.createElement('li');
+                    li.className = 'cart-item';
+                    li.innerHTML = 
+                        ${item.name} - $${item.price.toFixed(2)}
+                        <button onclick="removeFromCart('${item.name}')">Remove</button>
+                    ;
+                    cartList.appendChild(li);
+                    totalPrice += item.price;
+                });
+
+                checkoutButton.style.display = 'inline-block'; // Show checkout button if items are in cart
+            }
+
+            totalPriceElement.textContent = totalPrice.toFixed(2);
+        }
+
+        // Function to remove an item from the cart
+        function removeFromCart(productName) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // Filter out the item to be removed
+            cart = cart.filter(item => item.name !== productName);
+
+            // Update the cart in localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Re-display the cart
+            displayCart();
+        }
+
+        // Display the cart on page load
+        window.onload = displayCart;
+    </script>
+</body>
+</html>

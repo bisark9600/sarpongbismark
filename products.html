@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Clothing Store</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Our Products</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <h2>New Arrivals</h2>
+            <p>Check out the latest trends in fashion!</p>
+        </section>
+        
+        <section class="product-list">
+            <div class="product">
+                <img src="go.jpg" alt="Stylish T-Shirt">
+                <h3>Stylish T-Shirt</h3>
+                <p>$25.00</p>
+                <a href="cart.html" class="button" onclick="addToCart('Stylish T-Shirt', 25.00)">Add to Cart</a>
+            </div>
+
+            <!-- Repeat for other products -->
+            <!-- Example for Casual Jeans -->
+            <div class="product">
+                <img src="come.jpg" alt="Casual Jeans">
+                <h3>Casual Jeans</h3>
+                <p>$40.00</p>
+                <a href="cart.html" class="button" onclick="addToCart('Casual Jeans', 40.00)">Add to Cart</a>
+            </div>
+            <!-- Example for Elegant Dress  -->
+            <div class="product">
+                <img src="2.jpg" alt="Elegant Dress">
+                <h3>Elegant Dress</h3>
+                <p>$55.00</p>
+                <a href="cart.html" class="button" onclick="addToCart('Elegant Dress', 55.00)">Add to Cart</a>
+            </div>
+            <!-- Example for Classic Jacket  -->
+            <div class="product">
+                <img src="class.jpg" alt="Classic Jacket">
+                <h3>Classic Jacket</h3>
+                <p>$70.00</p>
+                <a href="cart.html" class="button" onclick="addToCart('Classic Jacket', 70.00)">Add to Cart</a>
+            </div>
+            <!-- Example for Fashionable Sneakers  -->
+            <div class="product">
+                <img src="nike.jpg" alt="Fashionable Sneakers">
+                <h3>Fashionable Sneakers</h3>
+                <p>$155.00</p>
+                <a href="cart.html" class="button" onclick="addToCart('Fashionable Sneakers', 155.00)">Add to Cart</a>
+            </div>
+           <!-- Example for Comfortable Hoodies  -->
+            <div class="product">
+                <img src="sab.jpg" alt="Comfortable Hoodies">
+                <h3>Comfortable Hoodies</h3>
+                <p>$35.00</p>
+                <a href="cart.html" class="button" onclick="addToCart('Comfortable Hoodies', 35.00)">Add to Cart</a>
+            </div>
+
+          
+
+            <!-- Add more products as needed -->
+
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 BKS Clothing Store</p>
+    </footer>
+
+    <script>
+        // Function to add a product to the cart
+        function addToCart(product, price) {
+            // Retrieve the existing cart from localStorage, or initialize an empty array
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // Add the new product to the cart
+            cart.push({ name: product, price: price });
+
+            // Save the updated cart back to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Notify the user that the item was added
+            alert(product + ' has been added to your cart.');
+        }
+    </script>
+   </body>
+</html>
